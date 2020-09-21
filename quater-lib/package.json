@@ -9,6 +9,8 @@
     "lib": "vue build --target lib --name quater-lib src/main.js"
   },
   "main": "./dist/quater-lib.common.js",
+  "module": "./dist/quater-lib.esm.js",
+  "unpkg": "./dist/quater-lib.min.js",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
