@@ -12,4 +12,3 @@ yarn lib
 cd ../../../
 yarn add $libPath
 
-rm -rf lib.tmp
