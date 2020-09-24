@@ -1,29 +1,34 @@
 <template>
     <header>
-        <div class="line">
-            <div class="spacer" style="flex: 1"/>
+        <div id="top">
+            <div id="before">
+                </div>
             <h1>{{ title }}</h1>
             <div class="slot">
-                <slot name="firstLine">
+                <slot name="middle">
+                    <SearchBar />
+                </slot>
+            </div>
+            
+            <div class="slot">
+                <slot name="end">
                     
                 </slot>
             </div>
         </div>
-        <div class="line">
+        <nav>
             <NavHori :items="['Home', 'Params', 'Search', 'Profile']"></NavHori>
             
             <slot name="secondLine"></slot>
-        </div>
+        </nav>
         
     </header>
 </template>
 <script>
-import NavHori from "./NavHori.vue";
 
 export default {
     name: "Header",
     components: {
-        NavHori,
     },
     props: {
         title: {
@@ -34,26 +39,36 @@ export default {
 }
 </script>
 <style scoped lang="sass">
-@import '@/styles/variables.sass'
+@import '@/styles/colors.sass'
 
 header
-    height: 20vh
-    background-color: $blueDark1
+    height: 22vh
     color: white
-    padding-top: 3px
     margin-bottom: 0px
     overflow: hidden
+    margin: 0
+
+#before
+    flex: 0.2
+
+nav
+    background-color: white
+    box-shadow: 0px 0px 3px 0px grey
 
 h1
-    font-size: 1.6em
+    font-size: 2em
     font-family: Arial, Helvetica, sans-serif
+    align-self: center
+    margin-right: 28px
 
-.line:nth-child(1)
+#top
     display: flex
     flex-direction: row
+    background-color: $purpleDark
+    padding-top: 3px
+    height: 12vh
+    align-items: center
 
-h1
-    flex: 1
 
 .slot
     flex: 1
