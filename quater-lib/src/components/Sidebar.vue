@@ -1,7 +1,6 @@
 <template>
-
     <div id="sidebar" :style="sidebarOpen">
-        <div id="header">
+        <div id="header" :style="headerStyle">
             <div id="cross-close" v-on:click="openState = !openState"><p>X</p></div>
             <slot name="header"><div style="flex: 1; padding-right: 50px"><p>Header</p></div></slot>
         </div>
@@ -19,7 +18,6 @@
             </slot>
         </div>
     </div>
-
 </template>
 <script>
 export default {
@@ -32,6 +30,18 @@ export default {
             type: Array,
             required: false,
         },
+        onChangeState: {
+            type: Function,
+            required: false
+        },
+        headerHeight: {
+            type: String,
+            default: "20vh"
+        },
+        sidebarWidth: {
+            type: String,
+            default: "25vw"
+        }
     },
     data: function()
     {
@@ -42,10 +52,18 @@ export default {
     computed: {
         sidebarOpen: function()
         {
+            if (this.onChangeState)
+            {
+                this.onChangeState(this.openState)
+            }
             return {
-                width: (this.openState) ? "30vw" : "0",
+                width: (this.openState) ? this.sidebarWidth : "0",
             };
         },
+        headerStyle()
+        {
+            return "height: " + this.headerHeight;
+        }
     },
     watch: {
         open: function()
@@ -63,26 +81,21 @@ export default {
     display: flex
     position: fixed
     flex-direction: column
-    width: 30vw
+    width: 20vw
     color: white
     height: 100vh
     transition: 0.5s ease
     list-style: none
     overflow: hidden
+    background-color: $blueDark2
 
 #header
-    height: 20vh
     background-color: $blueDark1
     margin: 0
     padding: 0
     font-size: 1.3em
     display: flex
     flex-direction: row
-    
-
-#bodySidebar
-    height: 80vh
-    background-color: $blueDark2
     
 ul
     padding-left: 0px
