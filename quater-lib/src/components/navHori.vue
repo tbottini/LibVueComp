@@ -3,15 +3,18 @@
         <div id="underlineBox">
             <div>
             
-            <button v-for="(item, index) in items"
+            <router-link style="text-decoration:none" v-for="(item, index) in items"
                 :key='index'
-                v-on:click="changeTab(index, item)">
-                <slot>
+                v-bind:to="item.dir ? item.dir : item"
+                >
+                <button v-on:click="changeTab(index, item)">
+                <slot v-bind:item="item">
                     <label>
-                        {{ item }}
+                        {{ item.name ? item.name : item }}
                     </label>
                 </slot>
-            </button>
+                </button>
+            </router-link>
             </div>
             <transition name="shift">
                 <label id="underline" :style="paddingLeft"></label>
@@ -21,6 +24,7 @@
     </div>
 </template>
 <script>
+console.log("reload");
 export default {
     name: "NavHori",
     props: {
@@ -31,11 +35,16 @@ export default {
         onChange: {
             type: Function,
             required: false,
+        },
+        vuerouter: {
+            type: Boolean,
+            default: false,
         }
     },
     methods: {
         changeTab: function(newTab, valueTab)
         {
+            console.log("call")
             this.tabSelected = newTab;
             if (this.onChange)
                 this.onChange(this.tabSelected, valueTab);
@@ -66,14 +75,11 @@ div
     justify-content: center
     font-weight: bold
     font-size: 1.1em
-    
 
 button
     padding: 12px
     min-width: 100px
     background-color: white
-
-button
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif
     text-decoration: none
     position: relative
@@ -97,7 +103,6 @@ button
     position: relative
     margin-left: 12px
     bottom: 0px
-   
     height: 3px
     width: 100px
     background-color: black
