@@ -1,15 +1,13 @@
 <template>
-    <div id="grid">
+    <div ref="gridObj" id="grid">
         <div
         class="case"
         v-for="(item, index) in items"
         :key="index"
         :style="styleComputed"
         >
-                <div class="spacer" />
-                
                 <label>
-                    {{ item[printKey] }}
+                        {{ item[printKey] }}
                 </label>
                 <br>
                 <slot v-bind:item="item">
@@ -38,14 +36,20 @@ export default {
             type: Number,
             default: 5
         },
+        "minCellSize": {
+            type: Number,
+            default: 180
+        }
     },
+
     computed: {
         styleComputed: function(){
 
             return (this.pictureUrl) ? {
                     "background": `url('${this.pictureUrl}') no-repeat center center`,
                 } : {};
-        }
+        },
+
     }
 }
 
@@ -54,13 +58,13 @@ export default {
 @import '@/styles/variables.sass'
 
 #grid
-    display: grid
-    grid-template-columns: repeat(5, 19%)
-    grid-gap: 10px
-    grid-auto-rows: 200px
-    padding: 10px
+    width: 100%
+    padding: 10px 0
 
 .case
+    display: inline-block
+    width: 200px
+    height: 250px
     background-color: #bbbbbb
     border-radius: 10px
     padding: 2px
@@ -69,6 +73,8 @@ export default {
     -o-background-size: cover
     background-size: cover
     transition: 0.1s
+    margin: 7px
+    overflow: hidden
 
 .case:hover
     -moz-box-shadow: 0px 3px 5px 1px #330001
@@ -81,6 +87,14 @@ export default {
 
 
 .spacer
-    margin-bottom: 85%
+    background-color: red
+
+
+label
+    white-space: nowrap
+    width: inherit
+    overflow: hidden
+    text-overflow: ellipsis
+
 
 </style>
