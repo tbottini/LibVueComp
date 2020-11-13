@@ -1,5 +1,5 @@
-const db = require("../toolbox/sqlite.js");
-const hash = require("../toolbox/password.js");
+const db = require("../toolbox/sqlite.js.js");
+const hash = require("../toolbox/password.js.js");
 const parse = require("../toolbox/parser");
 
 class UserController
@@ -63,20 +63,6 @@ class UserController
         ]);
         user[attr] = parse.decode(value);
         return user;
-    }
-
-    async createUser(user)
-    {
-        var userExist = await db.get("select email from users where email = '?'", [user.email]);
-        user.password = await hash.hash(user.password);
-        if (userExist)
-            return ({error: "email already used"});
-        await db.run("insert into users values (null, '?', '?', ?)", [
-            user.email,
-            user.password,
-            user.isAdmin,
-        ]);
-        return (await this.getUserByEmail(user.email));
     }
 
     async getUsers()

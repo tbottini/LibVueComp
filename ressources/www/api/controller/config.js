@@ -14,13 +14,13 @@ class ConfigController
         if (!res)
         {
             console.log("add first row in config");
-            await db.run('insert into config values(null, null,null)')
+            await db.run('insert into config values(null)')
         }
     }
 
     async get()
     {
-        return await db.get("select id, from config", []);
+        return await db.get("select id from config", []);
     }
 }
 

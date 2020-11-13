@@ -1,6 +1,5 @@
 const router = require("express").Router();
 var userController = require("../controller/users.js");
-var artworkController = require("../controller/artwork.js.js.js.js.js");
 var User = require("../model/users.js");
 const ERROR = require("../toolbox/error");
 const parse = require("../toolbox/parser.js");

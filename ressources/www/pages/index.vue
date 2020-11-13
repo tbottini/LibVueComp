@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <nuxt-link to="/home">
-      <Button class="button">ENTRER</Button>
-    </nuxt-link>
+    <h1>
+      Quater Lib
+    </h1>
+    <h2>
+      Nuxt Version
+    </h2>
     
   </div>
   
@@ -19,46 +22,23 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  height: 100vh;
-  width: 100vw; 
-  margin: 0;
-  padding: 0;
-  background: url("../assets/images/V1.png") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 
-#enter:hover
+#app
 {
-  box-shadow: 0px 2px 20px 0px black;
-}
-
-a{
-  text-decoration: none;
-  color: white;
-}
-
-.button
-{
-  max-width: 300px;
-  width: 100%;
   margin: 0 auto;
-  height: 5vh;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 65%;
-  bottom: 0;
-  min-height: 65px;
+  width: 40%;
+}
 
-  font-family: 'acumin', sans-serif;
-  font-weight: 300;
-  font-size: 1.3em;
-  color: black;
-  background-color: #ffffff44;
+h1, h2
+{
+  font-size: 3em;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2
+{
+  font-size: 2em;
 }
 
 </style>

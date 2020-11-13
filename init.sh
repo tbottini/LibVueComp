@@ -15,4 +15,6 @@ rm -rf libvuecomp
 sed -i -e 's/<name>/'$name'/g' www/package.json www/nuxt.config.js www/api/index.js www/api/init.js
 sed -i -e 's/<admin-mail>/'$name'@factice.com/g' www/api/init.js
 
+cd www && yarn 
+
 #choose option for database  sqlite
